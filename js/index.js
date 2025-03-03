@@ -1,18 +1,11 @@
 document.addEventListener("DOMContentLoaded", loadRecords);
+// defining variables
 const Sname = document.getElementById("fName") ;
-
-
-
 const id = document.getElementById("id") ;
 const email = document.getElementById("email") ;
 const contactNo = document.getElementById("contactNo") ;
 const submit = document.getElementById("submit") ;
 const outputDiv = document.getElementById("output") ;
-// const showName = document.getElementById("showName") ;
-// const showId = document.getElementById("showId") ;
-// const showEmail = document.getElementById("showEmail") ;
-// const showContact = document.getElementById("showContact") ;
-// submit.addEventListener("click", showform);
 
 
 if (submit) {
@@ -34,6 +27,8 @@ function showform(event) {
     email.value = "";
     contactNo.value = "";
 }
+// To validate the user input
+
     function validateInputs(){
         const namePattern = /^[A-za-z\s]+$/;
         const idPattern = /^[0-9]+$/;
@@ -56,13 +51,14 @@ function showform(event) {
         }
         return true;
     }
+    // saving students Data
 
     function saveToLocalStorage(student) {
         let students = localStorage.getItem("students");
         students = students ? students + "\n" + student : student;
         localStorage.setItem("students", students);
     }
-
+// loading student record
     function loadRecords(){
         let students = localStorage.getItem("students");
         if (students) {
@@ -121,7 +117,7 @@ outputDiv.appendChild(show);
        
         localStorage.setItem("students", students.join("\n"));
     }
-    
+    // edit student
     function editStudent(show, oldStudent){
         const [oldName, oldId, oldEmail, oldContact] = oldStudent.split("|");
         const newName = prompt("Edit Name:", oldName);
